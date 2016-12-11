@@ -15,16 +15,26 @@ if(!dir.exists(data_unzipped)){
   dir.create(data_unzipped)
   unzip(data_local, exdir = data_unzipped)
 }
+# Read the data
 data <- read.csv("activity/activity.csv")
 ```
 
 
 ## What is mean total number of steps taken per day?
-
+```{r echo = TRUE}
+daily_total <- aggregate(steps~date, data = data, sum, na.rm = TRUE)
+hist(daily_total$steps)
+print(paste('The mean total number of steps taken per day is', round(mean(daily_total$steps),0)))
+print(paste('The median total number of steps taken per day is', round(median(daily_total$steps),0)))
+```
 
 
 ## What is the average daily activity pattern?
-
+```{r echo = TRUE}
+interval_mean <- aggregate(steps~interval, data = data, mean, na.rm = TRUE)
+plot(steps~interval, data = interval_mean, type = "l")
+print(paste('The highest number of steps, on average, occurs in interval',interval_mean$interval[which.max(interval_mean$steps)]))
+```
 
 
 ## Imputing missing values
