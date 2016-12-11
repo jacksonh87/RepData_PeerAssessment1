@@ -1,21 +1,15 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
 
 
 ## Loading and preprocessing the data
-```{r echo = TRUE}
-# Check whether the raw data has been unzipped and unzip if necessary
+
+```r
 data_local <- "activity.zip"
 data_unzipped <- "activity"
 if(!dir.exists(data_unzipped)){
   dir.create(data_unzipped)
   unzip(data_local, exdir = data_unzipped)
 }
-data <- read.csv("activity/activity.csv")
 ```
 
 
